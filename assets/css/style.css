@@ -1,8 +1,39 @@
 .jumbotron {
-    background-image: url(images/pexels-photo-552501.jpeg);
+    background-image: url(images/regional-train-rail-cars-platform-deutsche-bahn-159148.jpeg);
     background-size: 1200px 400px;
     background-repeat: no-repeat;
     color: #ffffff;
     text-align: center;
-    opacity: 0.8;
+    opacity: 0.9;
+    font-family: 'Wallpoet', 'cursive';
+}
+
+.paneled {
+    font-family: 'Wallpoet', 'cursive';
+    color: #ffffff;
+    background-color: #a94442;
+    border-color: #a94442;
+}
+
+.dark-background {
+    background-color: #1A1919;
+    color: #ffffff;
+    font-family: 'Share Tech Mono', monospace;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.dimmed {
+    position: relative;
+}
+
+.dimmed:before {
+    content: " ";
+    z-index: -1;
+    display: block;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(169, 68, 66, 0.4);
 }
