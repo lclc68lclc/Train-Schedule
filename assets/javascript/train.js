@@ -31,6 +31,7 @@
           frequency: frequency,
           dateAdded: firebase.database.ServerValue.TIMESTAMP
       });
+      $(".form-control").empty();
 
   });
 
@@ -46,15 +47,15 @@
           var trainConverted = moment(ctrain, "HH:mm");
 
           var newTime = moment().diff(moment(trainConverted), "minutes");
-
+          console.log(newTime);
           var remainder = newTime % retrievedData.frequency;
-
+          console.log(remainder);
           var tilNextTrain = retrievedData.frequency - remainder;
-
+          console.log(tilNextTrain);
           var nextTrain = moment().add(tilNextTrain, "minutes");
 
-          var nextTraint = moment(nextTrain, "HH:mm");
-
+          var nextTraint = moment(nextTrain, "HH:mm").format("HH:mm");
+          //console.log(nextTraint);
           tableHTML = tableHTML + "<td>" + nextTraint + "</td><td>" + tilNextTrain + "</td></tr>";
 
 
