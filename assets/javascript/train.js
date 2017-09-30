@@ -36,18 +36,30 @@
 
   database.ref().orderByChild("dateAdded").on("child_added", function(snapshot) {
 
-      var retrievedData = snapshot.val();
+          var retrievedData = snapshot.val();
+          var ctrain = retrievedData.firsttrain;
 
-      var tableHTML = "<tr><td>" + retrievedData.name + "</td><td>" + retrievedData.destination + "</td><td>" + retrievedData.frequency + "</td></tr>";
+          var tableHTML = "<tr><td>" + retrievedData.name + "</td><td>" + retrievedData.destination + "</td><td>" + retrievedData.frequency + "</td>";
 
-      var now = moment().format("HH:mm");
-      var firstTrainConverted = moment(retrievedData.firsttrain, "HH:mm");
-      //console.log(now);
-      console.log(firstTrainConverted);
-      var nextArrival = moment(firstTrainConverted).add(retrievedData.frequency, "m");
-      console.log(nextArrival);
+          var now = moment().format("HH:mm");
 
-      $(".train-list").append(tableHTML);
-  }, function(errorObject) {
-      console.log("There is an retrival error!");
-  });
+          var trainConverted = moment(ctrain, "HH:mm");
+
+          var newTime = moment().diff(moment(trainConverted), "minutes");
+
+          var remainder = newTime % retrievedData.frequency;
+
+          var tilNextTrain = retrievedData.frequency - remainder;
+
+          var nextTrain = moment().add(tilNextTrain, "minutes");
+
+          var nextTraint = moment(nextTrain, "HH:mm");
+
+          tableHTML = tableHTML + "<td>" + nextTraint + "</td><td>" + tilNextTrain + "</td></tr>";
+
+
+          $(".train-list").append(tableHTML);
+      },
+      function(errorObject) {
+          console.log("There is an retrival error!");
+      })
